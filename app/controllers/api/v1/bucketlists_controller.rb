@@ -5,4 +5,9 @@ class Api::V1::BucketlistsController < ApplicationController
    def show
     render json: Bucketlist.find(params[:id]), serializer: BucketlistSerializer
   end
+  
+  def destroy
+    bucket = Bucketlist.find(params[:id])
+    bucket.destroy
+  end
 end

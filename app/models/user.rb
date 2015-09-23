@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  before_create :generate_token
   has_secure_password
 
   before_save { self.email = email.downcase }
@@ -10,4 +11,10 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, allow_blank: true
 
   has_many :bucketlists
+
+  def generate_token
+    begin
+      self.auth_token = SecureRandom.hex
+    end while self.class.exists?(auth_token: auth_token)
+  end
 end
