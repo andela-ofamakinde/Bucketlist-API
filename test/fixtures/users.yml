@@ -4,10 +4,10 @@ one:
   name: MyString
   email: MyString
   password_digest: MyString
-  auth-token: MyString
+  auth_token: MyString
 
 two:
   name: MyString
   email: MyString
   password_digest: MyString
-  auth-token: MyString
+  auth_token: MyString

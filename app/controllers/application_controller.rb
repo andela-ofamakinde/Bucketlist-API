@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::API 
 
+  # For APIs, you may want to use :null_session instead.
+  # protect_from_forgery with: :null_session 
   include ActionController::HttpAuthentication::Basic::ControllerMethods
   include ActionController::HttpAuthentication::Token::ControllerMethods
   # before_filter :authenticate_user_from_token
@@ -20,7 +22,7 @@ class ApplicationController < ActionController::API
   def authenticate_user_from_token
      authenticate_or_request_with_http_token do |token, options| 
       User.find_by(auth_token: token) 
-    end
+  end
     
   end
 end
