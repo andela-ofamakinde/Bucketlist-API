@@ -12,7 +12,7 @@ class Api::V1::BucketlistItemsController < ApplicationController
    if bucketlist_item.save
     render json: bucketlist_item, status: 201
     else
-    render json: bucketlist_item.errors
+    render json: bucketlist_item.errors, status: 422
     end
   end
 

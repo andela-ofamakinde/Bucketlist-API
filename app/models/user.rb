@@ -17,4 +17,13 @@ class User < ActiveRecord::Base
       self.auth_token = SecureRandom.hex
     end while self.class.exists?(auth_token: auth_token)
   end
+  
+    def generate_token
+    unless (self.expired && Time.now.to_i >= self.expired.to_i)
+      self.expired = Time.now+(60*60*24*7)  #A week from now
+      begin
+        self.token = SecureRandom.hex
+      end while User.exists?(token: self.token)
+    end
+  end
 end

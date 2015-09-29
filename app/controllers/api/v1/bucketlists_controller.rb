@@ -1,5 +1,5 @@
 class Api::V1::BucketlistsController < ApplicationController
-  # before_filter :authenticate_user_from_token
+  before_action :authenticate_user_from_token, except: [:index]
 
   def index
     render json: Bucketlist.all, status: 200, each_serializer: BucketlistSerializer
@@ -36,12 +36,6 @@ class Api::V1::BucketlistsController < ApplicationController
   private
    def list_params
     params.permit(:name)
-  end
-
-  def authenticate_user_from_token
-     authenticate_or_request_with_http_token do |token, options| 
-      User.find_by(auth_token: token) 
-    end
   end
 
 end

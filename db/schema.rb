@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922000626) do
+ActiveRecord::Schema.define(version: 20150929151809) do
 
   create_table "bucketlist_items", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "done"
+    t.boolean  "done",          default: false
     t.integer  "bucketlist_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "bucketlist_items", ["bucketlist_id"], name: "index_bucketlist_items_on_bucketlist_id"
