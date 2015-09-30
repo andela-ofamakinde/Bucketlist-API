@@ -1,12 +1,18 @@
 class Api::V1::BucketlistsController < ApplicationController
-  before_action :authenticate_user_from_token, except: [:index]
+  before_action :authenticate, except: [:index]
 
   def index
     render json: Bucketlist.all, status: 200, each_serializer: BucketlistSerializer
   end
 
   def show
+    bucketlist = Bucketlist.find(params[:id])
+    require "pry-nav"; binding.pry
+    if current_user.id === bucketlist.user_id
     render json: Bucketlist.find(params[:id]), status: 200, serializer: BucketlistSerializer
+  else
+    render json: "Unauthorised"
+  end
   end
 
   def create
