@@ -7,9 +7,8 @@ class Api::V1::BucketlistsController < ApplicationController
 
   def show
     bucketlist = Bucketlist.find(params[:id])
-    require "pry-nav"; binding.pry
-    if current_user.id === bucketlist.user_id
-    render json: Bucketlist.find(params[:id]), status: 200, serializer: BucketlistSerializer
+    if current_user.id == bucketlist.user_id
+    render json: bucketlist, status: 200, serializer: BucketlistSerializer
   else
     render json: "Unauthorised"
   end

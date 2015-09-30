@@ -12,10 +12,11 @@ before_action :authenticate, except: [:create]
       render json: { error: 'Incorrect credentials' }, status: 401
     end
   end
-
+  
   def logout
     @user = current_user
     @user.loggedin = false
+    @user.expire_token = DateTime.now
     if @user.save
      render json: "logged out"
     end

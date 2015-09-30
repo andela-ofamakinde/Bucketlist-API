@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  before_create :generate_token
+  before_save :generate_token
   has_secure_password
 
   before_save { self.email = email.downcase }
@@ -13,9 +13,12 @@ class User < ActiveRecord::Base
   has_many :bucketlists
 
   def generate_token
+    if self.expire_token <= DateTime.now || self.expire_token == nil 
     begin
       self.auth_token = SecureRandom.hex
     end while self.class.exists?(auth_token: auth_token)
+    self.expire_token = DateTime.now + 2
+    end
   end
   
 end
