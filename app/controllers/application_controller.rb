@@ -9,9 +9,11 @@ class ApplicationController < ActionController::API
   def authenticate_token
     authenticate_with_http_token do |token, options|
       @current_user = User.find_by(auth_token: token)
-      # @current_user.loggedin = true
-      if @current_user.loggedin == true
+      if @current_user.loggedin == true && (@current_user.expire_token != DateTime.now)
         return true
+      # elsif @current_user.expire_token == DateTime.now
+      #   render json: "Log in to use the app"
+      #   return false
       else
         return false
       end
