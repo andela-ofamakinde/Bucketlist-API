@@ -30,4 +30,9 @@ class ApplicationController < ActionController::API
     end
   end
 
+  def log_in(user)
+    user.loggedin = true
+    user.save
+  end
+
 end

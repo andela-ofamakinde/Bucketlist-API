@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :bucketlists
 
   def generate_token
-    if self.expire_token <= DateTime.now || self.expire_token == nil 
+    if self.expire_token == nil || self.expire_token <= DateTime.now
     begin
       self.auth_token = SecureRandom.hex
     end while self.class.exists?(auth_token: auth_token)
