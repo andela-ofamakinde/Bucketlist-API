@@ -2,7 +2,7 @@ class Api::V1::BucketlistsController < ApplicationController
   before_action :authenticate, except: [:index]
 
   def index
-    render json: Bucketlists.all, status: 200, each_serializer: AllbucketlistsSerializer
+    render json: Bucketlist.all, status: 200, each_serializer: AllbucketlistsSerializer
   end
 
   def lists
