@@ -43,7 +43,7 @@ The Endpoints covered are:
       <td>FALSE</td>
     </tr>
     <tr>
-      <td>POST /bucketlists/:id/<td>
+      <td>POST /bucketlists/:id/</td>
       <td>Add a new item to this bucket list</td>
       <td>FALSE</td>
     </tr>
