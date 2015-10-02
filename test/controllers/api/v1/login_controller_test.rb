@@ -9,6 +9,7 @@ class Api::V1::LoginControllerTest < ActionController::TestCase
   end
 
   test "User should be able to login with correct credentials" do
+    
     post :create, {:email=> "toyosi@gmail.com",
                    :password=> "password"}
 

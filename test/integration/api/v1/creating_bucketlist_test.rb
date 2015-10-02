@@ -20,6 +20,7 @@ class CreatingBucketlistTest < ActionDispatch::IntegrationTest
     post "/bucketlists",
            { name: ""}.to_json,
            { "Authorization" => "Token token=#{@user.auth_token}"}
+
     assert_equal 422, response.status 
   end
   
