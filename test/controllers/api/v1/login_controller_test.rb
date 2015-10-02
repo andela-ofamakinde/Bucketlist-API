@@ -1,39 +1,44 @@
 require 'test_helper'
 
 class Api::V1::LoginControllerTest < ActionController::TestCase
+  setup do
+    @user = User.create( :name => "toyosi", 
+                         :email=> "toyosi@gmail.com",
+                         :password=> "password", 
+                         :password_confirmation=> "password")
+  end
 
-# require 'test_helper'
-# module Api
-#   module V1
-#     class AuthorizationControllerTest < ActionController::TestCase
-#       def setup
-#         User.create(email: "user@email.com", password: "password")
-#       end
+  test "User should be able to login with correct credentials" do
+    post :create, {:email=> "toyosi@gmail.com",
+                   :password=> "password"}
 
-#       test "User should be able to login and logout if correct details is supplied" do
-#         post :create, {email: "user@email.com", password: "password"}
-#         body = JSON.parse(response.body)
+    response_body = json(response.body)
+    assert_equal response_body[:loggedin], true
+    refute_empty response_body[:token]
+    # assert_equal body[:expire_token], (DateTime.now + 2)
+  end
 
-#         assert_response 200
-#         assert_equal body["email"], "user@email.com"
-#         assert_equal body["token"].length, 32
+  test "User should be able to logout when logged in" do
+    post :create, {:email=> "toyosi@gmail.com",
+                   :password=> "password"}
 
-#         request.headers["Authorization"] = "Token token=#{body['token']}"
-#         get :logout
-#         assert_response 200
-#         assert_equal (User.last.expired).strftime("%D"), (Time.now).strftime("%D")
+    response_body = json(response.body)
+    request.headers["Authorization"] = "Token token=#{response_body[:token]}"
 
-#       end
+    get :logout
+    logout_response = json(response.body)
+    assert_response 200
+    assert_equal logout_response[:message], "logged out"
+    assert_equal logout_response[:loggedin], false
+  end
 
-#       test "User should not be able to login if incorrect details is supplied" do
-#         post :create, {email: "user2@email.com", password: "password"}
-
-#         assert_response 404
-#         assert_equal response.body, "Unauthorized"
-#       end
-
-#     end
-#   end
-# end
+  test "User should not be able to login with incorrect details" do
+    post :create, {email: "toyosi@gmail.com",
+                   password: "passworded"}
+                   
+    response_body = json(response.body)
+    assert_response 401
+    assert_equal response_body[:error], "Incorrect credentials"
+  end
 
 end

@@ -1,10 +1,14 @@
 class Api::V1::BucketlistItemsController < ApplicationController
   def index
-    render json: BucketlistItem.all, status: 200, each_serializer: BucketlistItemSerializer
+    render json: BucketlistItem.all, 
+                 status: 200, 
+                 each_serializer: BucketlistItemSerializer
   end
 
   def show
-    render json: BucketlistItem.find(params[:id]), status: 200, serializer: BucketlistItemSerializer
+    render json: BucketlistItem.find(params[:id]), 
+                 status: 200, 
+                 serializer: BucketlistItemSerializer
   end
 
   def create

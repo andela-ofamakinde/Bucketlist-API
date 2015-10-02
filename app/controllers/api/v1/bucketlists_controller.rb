@@ -2,11 +2,14 @@ class Api::V1::BucketlistsController < ApplicationController
   before_action :authenticate, except: [:index]
 
   def index
-    render json: Bucketlist.all, status: 200, each_serializer: AllbucketlistsSerializer
+    render json: Bucketlist.all, status: 200, 
+                 each_serializer: AllbucketlistsSerializer
   end
 
   def lists
-    render json: current_user.bucketlists.all, status: 200, each_serializer: AllbucketlistsSerializer
+    render json: current_user.bucketlists.all, 
+                 status: 200, 
+                 each_serializer: AllbucketlistsSerializer
   end
 
   def create
@@ -21,7 +24,9 @@ class Api::V1::BucketlistsController < ApplicationController
   def show
     bucketlist = Bucketlist.find(params[:id])
     if current_user.id == bucketlist.user_id
-      render json: bucketlist, status: 200, serializer: BucketlistSerializer
+      render json: bucketlist,
+             status: 200,
+             serializer: BucketlistSerializer
     else
       render json: "Unauthorised"
     end

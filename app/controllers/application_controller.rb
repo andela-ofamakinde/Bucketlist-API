@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
   def authenticate_token
     authenticate_with_http_token do |token, options|
       @current_user = User.find_by(auth_token: token)
-      check_token
+      check_user
     end
   end
 
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::API
     render json: "Unauthorized", status: 401
   end
 
-  def check_token
+  def check_user
     if (current_user.loggedin == true) && (current_user.expire_token != DateTime.now)
       return true
     else

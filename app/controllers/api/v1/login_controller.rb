@@ -6,7 +6,9 @@ before_action :authenticate, except: [:create]
     if @user && @user.authenticate(params[:password])
       @user.loggedin = true
       if @user.save
-        render json: { token: @user.auth_token, loggedin: @user.loggedin }
+        render json: { token: @user.auth_token, 
+                       loggedin: @user.loggedin, 
+                       expire_token: @user.expire_token }
       end
       else
       render json: { error: 'Incorrect credentials' }, status: 401
@@ -18,7 +20,9 @@ before_action :authenticate, except: [:create]
     @user.loggedin = false
     @user.expire_token = DateTime.now
     if @user.save
-     render json: "logged out"
+     render json: { message: "logged out",
+                    loggedin: @user.loggedin, 
+                    expire_token: @user.expire_token }
     end
   end
 
