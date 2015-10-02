@@ -5,8 +5,8 @@ Rails.application.routes.draw do
       resources :users  
       post 'bucketlists/:bucketlist_id' => 'bucketlist_items#create'
       resources :bucketlists  
-      post 'login' => 'login#create'
-      get 'logout' => 'login#logout'
+      post 'auth/login' => 'login#create'
+      get 'auth/logout' => 'login#logout'
       get 'list' => 'bucketlist#lists'
     end  
   end 
