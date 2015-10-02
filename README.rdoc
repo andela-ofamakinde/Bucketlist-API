@@ -1,4 +1,4 @@
-## Bucketlist API
+##Bucketlist API
 
 This exercise is to create an API that delivers JSON data for a bucketlist service.
 
@@ -62,15 +62,16 @@ The Endpoints covered are
   </tbody>
 </table>
 
-#### Lets Begin
+####Lets Begin
 
-#### Versioning the API
+####Versioning the API
 
 In order for the API interface and the url to remain stable and consistent, we need to version our API.
 This ensures that if there is change to the routing, the parameters passed to the API or response format, all of the clients using the old API dont break.
 With versioning, new and improved APIs can be released, without cutting off clients using the old APIs.
 We'll be versioning our api with routes like api/v1/bucketlists instead of just /bucketlists.
 This is configured in the config/routes.rb file:
+
 ```
 namespace :api do  
   namespace :v1 do  
@@ -83,7 +84,7 @@ namespace :api do
   end  
 end 
 ```
-#### Endpoints
+####Endpoints
 
 1. POST /api/v1/signup
 
@@ -126,6 +127,7 @@ class User < ActiveRecord::Base
 end
 ```
 In the controllers/application.rb file:
+
 ```
   def authenticate_token
     authenticate_with_http_token do |token, options|
@@ -136,11 +138,13 @@ In the controllers/application.rb file:
 3. POST /auth/login
 
 A signed up user is able to login to the app after providing a valid username and password. A logged in user uses his token as authenticate to make requests. The request format is shown below:
+
 ```
  post :create, {:email=> "toyosi@gmail.com",
                    :password=> "password"}
 ```
 response for a succesful request is
+
 ```
 {
     "token": "b21812afdd969d7cf22c59451de12345",
@@ -150,6 +154,7 @@ response for a succesful request is
 ```
 
 A request with a wrong email address or wrong password will generate a response with a 422 status 
+
 ```
 {
     "error": "Incorrect credentials"
@@ -159,10 +164,13 @@ A request with a wrong email address or wrong password will generate a response 
 4. POST /bucketlists/
 
  A logged in user should be able to create a bucketlist with valid parameters. A post request is to create a bucketlist is shown below
+
 ```
   post :create ,:name => "Bucketlist1" 
 ```
+
 After successful creation, the JSON data model for the bucketlist is shown below
+
 ```
 {
   id: 1,
@@ -172,7 +180,9 @@ After successful creation, the JSON data model for the bucketlist is shown below
   created_by: “1113456”
 }
 ```
+
 An invalid bucketlist name returns the following response
+
 ```
 {
     "name": [
@@ -181,15 +191,19 @@ An invalid bucketlist name returns the following response
     ]
 }
 ```
+
 5. POST /bucketlists/:id
 
  A post request is to create a bucketlist: 
+
 ```
   post :create ,:name => "I need to do X" ,
                 :bucketlist_id => 1,
                 :user_id => 1113456
 ```
+
 After succesful creation of an item, the JSON data model for the bucketlist is shown below
+
 ```
 {
     bucketlist: 
@@ -211,6 +225,7 @@ After succesful creation of an item, the JSON data model for the bucketlist is s
     }
 }
 ```
+
     The response for an unsuccesful creation of a bucketlist item is the same for unsuccesful creation of a bucketlist.
 
 
