@@ -1,10 +1,8 @@
 ## Bucketlist API
 
-This exercise is to create an API that delivers JSON data for a bucketlist service.
+This exercise is to create an API that delivers JSON data for a bucketlist service. The project uses Token Based Authentication to secure the API endpoints.
 
-The project uses Token Based Authentication to secure the API endpoints
-
-The Endpoints covered are
+The Endpoints covered are:
 <table>
   <thead>
   <tr>
