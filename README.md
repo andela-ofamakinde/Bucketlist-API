@@ -40,12 +40,12 @@ The Endpoints covered are
       <td>TRUE</td>
     </tr>
     <tr>
-      <td>GET /bucketlists/<id></td>
+      <td>GET /bucketlists/id</td>
       <td>Get single bucket list</td>
       <td>FALSE</td>
     </tr>
     <tr>
-      <td><POST /bucketlists/<id>/td>
+      <td>POST /bucketlists/id/td>
       <td>Add a new item to this bucket list</td>
       <td>FALSE</td>
     </tr>
@@ -226,7 +226,7 @@ After succesful creation of an item, the JSON data model for the bucketlist is s
 }
 ```
 
-    The response for an unsuccesful creation of a bucketlist item is the same for unsuccesful creation of a bucketlist.
+The response for an unsuccesful creation of a bucketlist item is the same for unsuccesful creation of a bucketlist.
 
 
 
