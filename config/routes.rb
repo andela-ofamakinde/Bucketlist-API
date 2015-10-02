@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     namespace :v1 do  
       resources :users  
       post 'bucketlists/:bucketlist_id' => 'bucketlist_items#create'
-      resources :bucketlists  
+      resources :bucketlists 
+      resources :bucketlist_items  
       post 'auth/login' => 'login#create'
       get 'auth/logout' => 'login#logout'
       get 'list' => 'bucketlist#lists'

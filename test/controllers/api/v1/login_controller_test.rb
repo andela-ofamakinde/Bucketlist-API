@@ -16,7 +16,6 @@ class Api::V1::LoginControllerTest < ActionController::TestCase
     response_body = json(response.body)
     assert_equal response_body[:loggedin], true
     refute_empty response_body[:token]
-    # assert_equal body[:expire_token], (DateTime.now + 2)
   end
 
   test "User should be able to logout when logged in" do

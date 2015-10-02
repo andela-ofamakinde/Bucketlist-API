@@ -15,6 +15,8 @@ class Api::V1::BucketlistsController < ApplicationController
   def create
    bucketlist = Bucketlist.new(list_params)
    if bucketlist.save
+    bucketlist.user_id = current_user.id
+    bucketlist.save
       render json: bucketlist, status: 201
     else
       render json: bucketlist.errors, status: 422
