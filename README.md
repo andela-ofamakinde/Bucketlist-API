@@ -1,4 +1,4 @@
-##Bucketlist API
+## Bucketlist API
 
 This exercise is to create an API that delivers JSON data for a bucketlist service.
 
@@ -62,9 +62,9 @@ The Endpoints covered are
   </tbody>
 </table>
 
-####Lets Begin
+#### Lets Begin
 
-####Versioning the API
+#### Versioning the API
 
 In order for the API interface and the url to remain stable and consistent, we need to version our API.
 This ensures that if there is change to the routing, the parameters passed to the API or response format, all of the clients using the old API dont break.
