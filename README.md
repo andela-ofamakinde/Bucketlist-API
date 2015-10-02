@@ -38,22 +38,22 @@ The Endpoints covered are:
       <td>TRUE</td>
     </tr>
     <tr>
-      <td>GET /bucketlists/id</td>
+      <td>GET /bucketlists/:id</td>
       <td>Get single bucket list</td>
       <td>FALSE</td>
     </tr>
     <tr>
-      <td>POST /bucketlists/id/td>
+      <td>POST /bucketlists/:id/<td>
       <td>Add a new item to this bucket list</td>
       <td>FALSE</td>
     </tr>
     <tr>
-      <td>PUT /bucketlists/<id></td>
+      <td>PUT /bucketlists/:id</td>
       <td>Update this bucket list</td>
       <td>FALSE</td>
     </tr>
     <tr>
-      <td>DELETE /bucketlists/<id></td>
+      <td>DELETE /bucketlists/:id</td>
       <td>Delete this single bucket list</td>
       <td>FALSE</td>
     </tr>
